@@ -1,4 +1,4 @@
-# bigdata-p2
+# bigdata-p3
 
 Tweets were collected for 3 days, resulting in 50Gb worth of tweets.
 
