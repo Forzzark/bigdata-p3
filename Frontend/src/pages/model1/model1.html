@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Top Hashtags</ion-title>
+    <ion-title>Model 1</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -20,6 +20,7 @@
 <p>
 This page displays the predicitions metrics of a model that uses the following configurations
 </p>
+
 
 <ul>
   <li>
@@ -39,6 +40,10 @@ This page displays the predicitions metrics of a model that uses the following c
   </li>
 </ul>
 
+<p>
+  Note: raw prediciton results in console or project folder
+</p>
+
 
 <h3>
 Chart:
@@ -48,4 +53,7 @@ Chart:
 <div *ngIf="chart">
 <canvas id="canvas">{{ chart }}</canvas>
 </div>
+<div *ngIf="chart2">
+  <canvas id="canvas2">{{ chart }}</canvas>
+  </div>
 </ion-content>

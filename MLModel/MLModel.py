@@ -65,6 +65,7 @@ train_data = train_data[2000:]
 
 val_labels = trainingLabels[:2000]
 train_labels = trainingLabels[2000:]
+print(train_labels)
 
 vocab_size=len(dict)
 
