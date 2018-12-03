@@ -4,6 +4,7 @@
 from bs4 import BeautifulSoup
 import re
 from nltk.tokenize import WordPunctTokenizer
+import lxml
 tok = WordPunctTokenizer()
 
 import pandas as pd
