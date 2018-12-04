@@ -4,6 +4,8 @@ import tensorflow as tf
 from tensorflow import keras
 
 import numpy as np
+from keras.utils import to_categorical
+
 
 #create dictionary
 dict = {}
@@ -49,6 +51,7 @@ for i in range(0, len(testData.text)):
 
 maxLen=0
 
+
 for data in indexedTrainingData:
     maxLen = max(maxLen, len(data))
 for data in indexedTestData:
@@ -59,13 +62,14 @@ train_data = keras.preprocessing.sequence.pad_sequences(indexedTrainingData,
 test_data = keras.preprocessing.sequence.pad_sequences(indexedTestData,
                                                         maxlen=maxLen)
 
+trainingLabels = to_categorical(trainingLabels)
 
 val_data = train_data[:2000]
 train_data = train_data[2000:]
 
 val_labels = trainingLabels[:2000]
 train_labels = trainingLabels[2000:]
-print(train_labels)
+for p in train_labels: print(p)
 
 vocab_size=len(dict)
 
@@ -74,10 +78,10 @@ model = keras.Sequential()
 model.add(keras.layers.Embedding(vocab_size, 16))
 model.add(keras.layers.GlobalAveragePooling1D())
 model.add(keras.layers.Dense(16, activation=tf.nn.relu))
-model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
+model.add(keras.layers.Dense(3, activation=tf.nn.softmax))
 
 model.compile(optimizer=tf.train.AdamOptimizer(),
-              loss='binary_crossentropy',
+              loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 
@@ -95,10 +99,10 @@ modelResults = model.predict_classes(np.array(test_data))
 model2 = keras.Sequential()
 model2.add(keras.layers.Flatten())
 model2.add(keras.layers.Dense(16, activation=tf.nn.relu))
-model2.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
+model2.add(keras.layers.Dense(3, activation=tf.nn.softmax))
 
 model2.compile(optimizer=tf.train.AdamOptimizer(),
-              loss='binary_crossentropy',
+              loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 
